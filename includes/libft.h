@@ -6,13 +6,16 @@
 /*   By: sylewis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/02 20:35:06 by sylewis           #+#    #+#             */
-/*   Updated: 2019/04/11 11:32:29 by sylewis          ###   ########.fr       */
+/*   Updated: 2019/04/21 17:41:28 by sylewis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
+# define BUFF_SIZE 10
 # include <string.h>
+# include <stdlib.h>
+# include <unistd.h>
 
 typedef struct		s_list
 {
@@ -21,6 +24,14 @@ typedef struct		s_list
 	size_t			content_size;
 	struct s_list	*next;
 }					t_list;
+
+typedef struct		s_gnl
+{
+	int				fd;
+	char			*line;
+	char			*tmp;
+	struct s_gnl	*next;
+}					t_gnl;
 
 int					ft_atoi(const char *str);
 void				ft_bzero(void *s, size_t n);
@@ -92,5 +103,6 @@ char				*ft_strrev(char *str);
 void				ft_sort_integer_table(int *tab, int size);
 int					ft_power(int nb, int power);
 t_list				*ft_lstfindnb(t_list *begin_list, int nb);
+int					get_next_line(const int fd, char **line);
 
 #endif
